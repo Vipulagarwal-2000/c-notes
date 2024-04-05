@@ -1,0 +1,130 @@
+C++ notes
+
+if you divide a int with another int and save it to a float, it will be implictly typecasted to float.
+so int n = 5/3 equals 1.
+while float m = 5/3 equals 1.66. 
+
+to some place which corresponds with the size of float or some default precision point.
+
+another way is to use printf() and scanf() from C they are valid in c++. they are faster then cin and cout.
+with printf and scanf you have to use value declaration.
+
+some of them are:
+int = "%d" = 4byte
+long int = "%ld" =8byte
+char = "%c" = 1 byte
+float = "%f" = 4byte
+
+double = "%lf" = 8byte
+
+with float you can use precision by giving the precision value.
+
+suppose you want it to be 3 places . you have to write it as "%.3f"  it will give a float to 3 float places similar for double.
+
+to store value using scanf we write it as scanf("%d", &d);
+it is for storing int.
+&d = & refered to reference, it is basically telling computer to store the int at reference d.
+
+since in c++ and c, we have memory correspond to varibale name and &variablename allow us to store the input at varriable.
+python and other modern language got it easier in sense.
+
+for printing using printf use printf("%d", d)
+just refer to varriable directly.
+
+C++ is vast.
+
+
+  staircase right alligned soluting using loop.
+
+  void staircase(int n) {
+    
+    for(int i =1; i <= n ; i++){
+        for(int j =n-i; j >0; j--){
+            cout<<" ";
+        }
+        for(int k = 0; k < i; k++){
+            cout << "#";
+        }
+        if(i != n){
+        cout << "\n";}
+    }
+
+output : it's Right alligned. n = 6; 
+     #
+    ##
+   ###
+  ####
+ #####
+######
+
+another problem  =  Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. 
+  Then print the respective minimum and maximum values as a single line of two space-separated long integers.
+
+i have used a rudimentry approach of first sum the numbers in array, then save them to new array by subtracting one value at a time.
+  after that i have used a loop to loop for high and low value.
+
+one can just sort the loop and giveout first and last value too.
+  yes long int is used because the test case are way bigger.
+
+void miniMaxSum(vector<int> arr) {
+    
+    
+    long int sum =0;
+    for(int i =0; i < 5; i++){
+        sum += arr[i];
+        
+        }
+       long int arrsum[5];
+        for(int i =0; i <5; i++){
+            arrsum[i] = sum - arr[i];
+        }
+        
+        long int temp = arrsum[0];
+        long int temp2 = arrsum[0];
+        for(int i =0; i < 5; i++){
+           
+            if(arrsum[i] < temp){
+                temp = arrsum[i];
+                
+            }
+         
+          if(arrsum[i] > temp2){
+               temp2 = arrsum[i];
+            }
+        }
+        
+       
+        cout << temp << " " ;
+        cout << temp2; 
+        
+    }
+
+this one is much simpler: You are in charge of the cake for a child's birthday. 
+  You have decided the cake will have one candle for each year of their total age. 
+  They will only be able to blow out the tallest of the candles. Count how many candles are tallest.
+
+https://www.hackerrank.com/challenges/birthday-cake-candles/problem?isFullScreen=true
+
+  the size() fnction is present in vector. to get array size. first i found the biggest candle size. second i found the count of such candles.
+
+  
+int birthdayCakeCandles(vector<int> candles) {
+    
+    int size = candles.size();
+    int temp = candles[0];
+    for(int i =0; i < size; i++){
+        if(temp <= candles[i]){
+            temp = candles[i];
+        }
+    }
+    int count =0;
+    for(int i =0; i < size; i++){
+        if(candles[i] == temp){
+            count += 1;
+        }
+       
+    }
+     return count;
+
+}
+  
