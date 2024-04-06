@@ -1,0 +1,158 @@
+I will be using chatgpt to break it down.
+https://www.hackerrank.com/challenges/grading/problem?isFullScreen=true
+
+vector<int> gradingStudents(vector<int> grades) {
+    
+     int size = grades.size();
+    vector<int> newgrades;
+
+    for (int i = 0; i < size; i++) {
+        if (grades[i] < 38) {
+            newgrades.push_back(grades[i]);
+        } else if (grades[i] % 5 > 2) { // Changed 3 to 2
+            int n = grades[i] + (5 - (grades[i] % 5)); // Corrected rounding calculation
+            newgrades.push_back(n);
+        } else {
+            newgrades.push_back(grades[i]);
+        }
+    }
+
+    return newgrades;
+
+}
+
+
+
+Sure, let's break down the components of the code:
+
+```cpp
+#include <vector>
+
+using namespace std;
+```
+
+- `#include <vector>`: This line includes the standard C++ library header `<vector>`, which provides the functionality for creating and manipulating vectors.
+- `using namespace std;`: This line allows you to use names from the `std` namespace without having to prefix them with `std::`. The `std` namespace contains all the standard C++ library components.
+
+```cpp
+vector<int> gradingStudents(const vector<int>& grades) {
+    int size = grades.size();
+    vector<int> newgrades;
+```
+
+- `vector<int>`: This declares a vector that will hold integers. It's a dynamically resizable array provided by the C++ Standard Library.
+- `gradingStudents(const vector<int>& grades)`: This is the function definition. It takes a constant reference to a vector of integers (`grades`) as an argument and returns a vector of integers.
+- `int size = grades.size();`: This line calculates the size of the input vector `grades`.
+- `vector<int> newgrades;`: This initializes an empty vector `newgrades` that will hold the rounded grades.
+
+```cpp
+for (int i = 0; i < size; i++) {
+    if (grades[i] < 38) {
+        newgrades.push_back(grades[i]);
+```
+
+- `for (int i = 0; i < size; i++) {`: This is a `for` loop that iterates over each element of the input vector `grades`.
+- `if (grades[i] < 38) {`: This condition checks if the grade is less than 38.
+- `newgrades.push_back(grades[i]);`: If the grade is less than 38, it simply adds the grade to the `newgrades` vector.
+
+```cpp
+} else if (grades[i] % 5 > 2) { // Changed 3 to 2
+    int n = grades[i] + (5 - (grades[i] % 5)); // Corrected rounding calculation
+    newgrades.push_back(n);
+```
+
+- `else if (grades[i] % 5 > 2) {`: This condition checks if the remainder of the grade divided by 5 is greater than 2, indicating that rounding is needed.
+- `int n = grades[i] + (5 - (grades[i] % 5));`: This calculates the rounded grade by adding the difference between 5 and the remainder of the grade divided by 5 to the grade itself.
+- `newgrades.push_back(n);`: It then adds the rounded grade to the `newgrades` vector.
+
+```cpp
+} else {
+    newgrades.push_back(grades[i]);
+```
+
+- `else`: This block handles the case where neither of the above conditions are true, i.e., the grade is greater than or equal to 38 but does not need rounding.
+- `newgrades.push_back(grades[i]);`: It adds the original grade to the `newgrades` vector.
+
+```cpp
+}
+
+return newgrades;
+```
+
+- `return newgrades;`: This statement returns the `newgrades` vector containing the rounded grades from the function.
+
+I hope this breakdown helps clarify each component of the code. Let me know if you have any further questions!
+
+next problem : https://www.hackerrank.com/challenges/apple-and-orange/problem?isFullScreen=true
+
+void countApplesAndOranges(int s, int t, int a, int b, vector<int> apples, vector<int> oranges) {
+   long int m = apples.size();
+   long int n = oranges.size();
+    for(int i =0; i < m; i++){
+        apples[i] = a + apples[i];
+        
+    }
+    for(int i =0; i < n; i++){
+        oranges[i] = b + oranges[i];
+        
+    }
+    long int ca =0;
+    long int co =0;
+    
+    
+    for(int i =0; i < m; i++){
+        if(apples[i] >= s && apples[i] <= t){
+            ca += 1;
+            
+        }
+    }
+    for(int i =0; i < n; i++){
+        if(oranges[i] <= t && oranges[i] >= s){
+            co += 1;
+            
+        }
+    }
+    
+    cout << ca << endl;
+    cout << co ;
+
+}
+
+it can also be implemente by combining them into one.
+
+ for (int i = 0; i < apples.size(); i++) {
+        if (a + apples[i] >= s && a + apples[i] <= t) {
+            ca++;
+        }
+    }
+
+
+
+    next problem: https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem?isFullScreen=true
+
+vector<int> breakingRecords(vector<int> scores) {
+    int size = scores.size();
+    vector<int> finalle;
+    
+    int low = scores[0];
+    int high= scores[0];
+    
+    int clow =0;
+    int chigh =0;
+    
+    for(int i =0; i < size; i++){
+        if(scores[i]> high){
+            high=scores[i];
+           chigh += 1; 
+        }
+        if(scores[i] < low){
+            low=scores[i];
+            clow += 1;
+        }
+    }
+    
+     finalle.push_back(chigh);
+     finalle.push_back(clow);
+    
+    return finalle;
+
