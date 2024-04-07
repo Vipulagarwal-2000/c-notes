@@ -1,0 +1,221 @@
+preprocessor directive. #include
+
+The #include directive tells the compiler to include the content of a file in the source code.
+For example, #include<iostream> tells the compiler to include the standard iostream file which contains declarations of all the standard input/output library functions
+
+The statement #using namespace std is generally considered bad practice. it imports the entirety of the std namespace into the current namespace of the program.
+The alternative to this statement is to specify the namespace to which the identifier belongs using the scope operator(::) each time we declare a type. 
+
+Now at a later stage of development, we wish to use another version of cout that is custom implemented in some library called “foo” (for example)
+ 
+#include <foo.h> 
+#include <iostream> 
+using namespace std; 
+  
+cout << " Something to display"; 
+
+to which library does cout point to? The compiler may detect this and not compile the program. 
+In the worst case, the program may still compile but call the wrong function, since we never specified to which namespace the identifier belonged.
+
+Namespaces were introduced into C++ to resolve identifier name conflicts. This ensured that two objects can have the same name and yet be treated differently if they belonged to different namespaces.
+Notice how the exact opposite has occurred in this example. Instead of resolving a name conflict, we are actually creating a naming conflict.
+
+When we import a namespace we are essentially pulling all type definitions into the current scope. The std namespace is huge. It has hundreds of predefined identifiers,
+so it is possible that a developer may overlook the fact there is another definition of their intended object in the std library. 
+Unaware of this they may proceed to specify their own implementation and expect it to be used in later parts of the program. 
+Thus there would exist two definitions for the same type in the current namespace.
+This is not allowed in C++, and even if the program compiles there is no way of knowing which definition is being used where.
+
+The solution to the problem is to explicitly specify to which namespace our identifier belongs to using the scope operator (::). Thus one possible solution to the above example can be.
+
+#include <foo> 
+#include <iostream> 
+  
+// Use cout of std library 
+std::cout << "Something to display"; 
+  
+// Use cout of foo library 
+foo::cout < "Something to display"; 
+
+There are a few ways to resolve this dilemma i.e specify exact namespace without littering code with std keywords.
+
+Consider using typedefs 
+typedefs save us from writing long type definitions. In our example 1, we could solve the problem using two typedefs one for std library and another for foo
+
+CPP
+#include <foo> 
+#include <iostream> 
+  
+typedef std::cout cout_std; 
+typedef foo::cout cout_foo; 
+  
+cout_std << "Something to write"; 
+cout_foo << "Something to write";
+
+We can also use the statement for importing a single identifier. To import only std::cout we could use 
+
+using std::cout;
+
+
+If you still import entire namespaces, try to do so inside functions or limited scope and not in global scope.
+Use the “using namespace std” statement inside function definitions or class, struct definitions. 
+In doing so the namespace definitions get imported into a local scope, and we at least know where possible errors may originate if they do arise.
+
+CPP
+#include <iostream> 
+  
+// Avoid this 
+using namespace std; 
+  
+void foo() 
+{ 
+    // Inside function 
+    // Use the import statement inside limited scope 
+    using namespace std; 
+  
+    // Proceed with function 
+} 
+
+The main() function is the entry point of every C++ program, no matter where the function is located in the program.
+
+C++ Variables
+Variables in C++ is a name given to a memory location. It is the basic unit of storage in a program. In C++, all the variables must be declared before use.
+
+// Declaring multiple variables:
+type variable1_name, variable2_name, variable3_name;
+
+naming
+A variable name can consist of alphabets (both upper and lower case), numbers, and the underscore ‘_’ character. However, the name must not start with a number. 
+We cannot used C++ keyword(ex float,double,class)as a variable name.
+
+
+for basic c++ we will be dealing with local variable.
+
+Types of Variables
+There are three types of variables based on the scope of variables in C++
+
+Local Variables
+Instance Variables
+Static Variables
+
+Local Variables: A variable defined within a block or method or constructor is called a local variable. 
+These variables are created when entered into the block or the function is called and destroyed after exiting from the block or when the call returns from the function.
+The scope of these variables exists only within the block in which the variable is declared. i.e. we can access this variable only within that block.
+Initialization of Local Variable is Mandatory.
+
+Instance Variables: Instance variables are non-static variables and are declared in a class outside any method, constructor, or block. 
+As instance variables are declared in a class, these variables are created when an object of the class is created and destroyed when the object is destroyed.
+Unlike local variables, we may use access specifiers for instance variables. If we do not specify any access specifier then the default access specifier will be used.
+Initialization of Instance Variable is not Mandatory.
+Instance Variable can be accessed only by creating objects.
+
+
+Static Variables: Static variables are also known as Class variables. 
+These variables are declared similarly as instance variables, the difference is that static variables are declared using the static keyword within a class outside any method constructor or block.
+Unlike instance variables, we can only have one copy of a static variable per class irrespective of how many objects we create.
+Static variables are created at the start of program execution and destroyed automatically when execution ends.
+Initialization of Static Variable is not Mandatory. Its default value is 0
+If we access the static variable like the Instance variable (through an object), the compiler will show the warning message and it won’t halt the program. 
+The compiler will replace the object name with the class name automatically.
+If we access the static variable without the class name, the Compiler will automatically append the class name.
+
+
+
+Instance Variable Vs Static Variable
+Each object will have its own copy of the instance variable whereas We can only have one copy of a static variable per class irrespective of how many objects we create.
+Changes made in an instance variable using one object will not be reflected in other objects as each object has its own copy of the instance variable. In the case of static, 
+changes will be reflected in other objects as static variables are common to all objects of a class.
+We can access instance variables through object references and Static Variables can be accessed directly using the class name.
+The syntax for static and instance variables:
+class Example
+{
+    static int a; // static variable
+    int b;        // instance variable
+}
+
+
+Constants in C
+The constants in C are the read-only variables whose values cannot be modified once they are declared in the C program. The type of constant can be 
+an integer constant, a floating pointer constant, a string constant, or a character constant. In C language, the const keyword is used to define the constants
+
+Syntax to Define Constant
+const data_type var_name = value;
+
+One thing to note here is that we have to initialize the constant variables at declaration. Otherwise, the variable will store some garbage value and we won’t be able to change it.
+
+
+Constant
+
+Example: const int c = 20.	
+
+Literals
+
+Example: 24,15.5, ‘a’, “Geeks”, etc.
+
+// Single line comment
+
+ /*
+     Multiline Comment
+     .
+     .
+     .
+ */
+
+Since Comments do not contribute to the functionality of the program they are simply omitted at the time of compilation. 
+
+Comments are used for easier debugging.
+It makes a program more readable and gives an overall description of the code.
+Comments are helpful in skipping the execution of some parts of the code.
+Every time a program or code is reused after long periods of time, the comment recaps all the information of the code quickly.
+
+
+
+
+A token in C can be defined as the smallest individual element of the C programming language that is meaningful to the compiler
+
+
+Keywords
+Identifiers
+Constants
+Strings
+Special Symbols
+Operators
+
+Identifiers are used as the general terminology for the naming of variables, functions, and arrays
+
+
+Strings are nothing but an array of characters ended with a null character (‘\0’). 
+This null character indicates the end of the string. Strings are always enclosed in double quotes. Whereas, a character is enclosed in single quotes in C and C++.
+
+
+
+ C Token – Special Symbols
+The following special symbols are used in C having some special meaning and thus, cannot be used for some other purpose. Some of these are listed below:
+
+Brackets[]: Opening and closing brackets are used as array element references. These indicate single and multidimensional subscripts.
+Parentheses(): These special symbols are used to indicate function calls and function parameters.
+Braces{}: These opening and ending curly braces mark the start and end of a block of code containing more than one executable statement.
+Comma (, ): It is used to separate more than one statement like for separating parameters in function calls.
+Colon(:): It is an operator that essentially invokes something called an initialization list.
+Semicolon(;): It is known as a statement terminator.  It indicates the end of one logical entity. That’s why each individual statement must be ended with a semicolon.
+Asterisk (*): It is used to create a pointer variable and for the multiplication of variables.
+Assignment operator(=): It is used to assign values and for logical operation validation.
+Pre-processor (#): The preprocessor is a macro processor that is used automatically by the compiler to transform your program before actual compilation.
+Period (.): Used to access members of a structure or union.
+Tilde(~): Bitwise One’s Complement Operator.
+
+
+
+Unary Operators: Those operators that require only a single operand to act upon are known as unary operators.For Example increment and decrement operators
+
+Binary Operators: Those operators that require two operands to act upon are called binary operators. Binary operators can further are classified into: 
+Arithmetic operators
+Relational Operators
+Logical Operators
+Assignment Operators
+Bitwise Operator
+
+
+Ternary Operator: The operator that requires three operands to act upon is called the ternary operator. Conditional Operator(?) is also called the ternary operator.
+
+
