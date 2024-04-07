@@ -1,0 +1,63 @@
+#notes learning from geeksforgeeks
+
+
+c++ is high level language and  OOPs supporting language. C++ give a high level of control over system resources and memory. 
+
+It is portable and can be used to create applications that can be adapted to multiple platforms. 
+
+It makes programming easy for programmers to switch to C++ because its syntax is similar to C, Java, and C#.
+
+Games devlopment
+C++ used for game development and companies use it as their first choice to develop gaming systems because C++ is very close to the machine so 
+It can easily manipulate resources and able to built complex 3D games, multiplayer game, etc. Unreal game engine make games using C++.
+
+C++ is used in developing browsers, operating systems, and applications, as well as in-game programming, software engineering, data structures, etc.
+
+It is an imperative and a compiled language which means it is statistically typed.C++ has a strong type system, which means that variables have a specific type and that
+type must be respected in all operations performed on that variable
+
+C++ is a middle-level language rendering it the advantage of programming low-level (drivers, kernels) and even higher-level applications (games, GUI, desktop apps etc.).
+
+C++ programs excel in execution speed. Since, it is a compiled language, and also hugely procedural. Newer languages have extra in-built default features such as garbage-collection, dynamic typing etc. 
+which slow the execution of the program overall. Since there is no additional processing overhead like this in C++, it is blazing fast.
+
+C++ provides pointer support which aids users to directly manipulate storage address. This helps in doing low-level programming (where one might need to have explicit control on the storage of variables)
+
+##Standard Template Library (STL): The STL provides a large set of pre-written algorithms and data structures that can be used to simplify your code and make it more efficient.
+
+C++ is a compiled language, which means that code is transformed into machine code before it is executed. 
+This can result in faster execution times and improved performance compared to interpreted languages like Python.
+
+Machine Independent
+A C++ executable is not platform-independent (compiled programs on Linux won’t run on Windows), however, they are machine-independent. 
+Let us understand this feature of C++ with the help of an example. Suppose you have written a piece of code that can run on Linux/Windows/Mac OSx which makes the 
+C++ Machine Independent but the executable file of the C++ cannot run on different operating systems.
+
+
+Dynamic Memory Allocation
+When the program executes in C++ then the variables are allocated the dynamical heap space. Inside the functions, 
+the variables are allocated in the stack space. Many times, We are not aware in advance how much memory is needed to store particular 
+information in a defined variable and the size of required memory can be determined at run time.
+
+use this to get the array size from user input.
+
+Memory Management
+C++ allows us to allocate the memory of a variable or an array in run time. This is known as Dynamic Memory Allocation.
+In C++, the memory must be de-allocated dynamically allocated memory manually after it is of no use.
+The allocation and deallocation of the memory can be done using the new and delete operators respectively.
+
+Multi-threading ?? i really dont get it
+
+Multithreading is a specialized form of multitasking and multitasking is a feature that allows your system to execute two or more programs concurrently. 
+In general, there are two sorts of multitasking: process-based and thread-based.
+## (need to work on process and thread multitasking)Process-based multitasking handles the concurrent execution of programs. Thread-based multitasking deals with the multiprogramming of pieces of an equivalent program.
+A multithreaded program contains two or more parts that will run concurrently. Each part of such a program is named a thread, and every thread defines a separate path of execution.
+C++ doesn’t contain any built-in support for multithreaded applications. Instead, it relies entirely upon the OS to supply this feature
+
+https://www.geeksforgeeks.org/multithreading-in-c/
+
+
+Namespace is used by C++, to avoid name collisions.
+
+It is the most primarily used language in competitive programming as far as facts go. Most of the extremely rated coders typically use C++ for cryptography.
+
