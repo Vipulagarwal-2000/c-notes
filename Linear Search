@@ -1,0 +1,47 @@
+Linear Search
+
+//Linear Search
+#include <iostream>
+#include <cstdlib>
+
+//input function for array input
+void input(int arr[], int size){
+    for(int i =0; i < size; i++){
+        arr[i] =rand()%100;
+        std::cout<< arr[i] << " ";
+    }
+    std::cout<<"\n";
+   
+}
+//linear search for array search
+int lsearch(int arr[],int size){
+    int value;
+    std::cout<<"Enter the value to be searched"<<std::endl;
+    std::cin>>value;
+    int index =0;
+    for(int i =0; i < size; i++){
+        
+        if(arr[i] == value){
+            return index;
+        }
+        index +=1;
+    }
+    return -1;
+}
+    
+
+//Main unction
+int main()
+{
+    int size;
+    std::cout<<"Hello Everyone This code is of linear Search" << std::endl;
+    std::cout << "Enter the number of inputs" << std::endl;
+    std::cin>>size;
+    
+    int * arr = new int[size];
+    input(arr,size);
+      int index = lsearch(arr,size);
+      std::cout<<"The Position is: "<<index<<std::endl;
+
+    return 0;
+}
