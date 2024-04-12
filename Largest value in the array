@@ -1,0 +1,61 @@
+//Largest in the array
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+//you can choose between random and custom array input.
+/*
+void input(int arr[], int size){
+    srand(time(0)); 
+    for(int i =0; i < size; i++){
+        arr[i] =rand()%100;
+        std::cout<< arr[i] << " ";
+    }
+    std::cout<<"\n";
+   
+}
+
+*/
+//in case you want to enter custome inputs
+void input(int arr[], int size){
+    for(int i =0; i < size; i++){
+        std::cin>> arr[i];
+        
+    }
+    std::cout<<"\n";
+   
+}
+
+
+
+
+int largest(int arr[],int size){
+    int lvalue = arr[0];
+    
+    
+
+    for(int i =0; i < size; i++){
+        
+        if(arr[i] >= lvalue){
+           lvalue = arr[i];
+        }
+      
+    }
+    return lvalue;
+}
+    
+
+
+int main()
+{
+    int size;
+    std::cout<<"Hello Everyone This code is for finding the largest element in the array" << std::endl;
+    std::cout << "Enter the number of inputs" << std::endl;
+    std::cin>>size;
+    
+    int * arr = new int[size];
+    input(arr,size);
+      int lvalue = largest(arr,size);
+      std::cout<<"The largest Value is: "<<lvalue<<std::endl;
+
+    return 0;
+}
