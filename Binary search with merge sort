@@ -1,0 +1,189 @@
+#include <iostream>
+#include <cstdlib>
+
+
+//Binary Search
+
+
+  //below code randomly fills the array
+/*void
+input (int arr[], int size)
+{
+
+
+  srand (time (0));
+  for (int i = 0; i < size; i++)
+	{
+	  arr[i] = rand () % 10;
+	  std::cout << arr[i] << " ";
+	}
+  std::cout << "\n";
+
+
+
+
+}
+*/
+
+
+//below in custom input in binary search
+void
+input (int arr[], int size)
+{
+
+
+  for (int i = 0; i < size; i++)
+	{
+	  std::cin>>arr[i] ;
+	  
+	}
+
+
+
+
+
+}
+
+
+
+void merge(int arr[], int l, int mid, int r) {
+    int n1 = mid - l + 1;
+    int n2 = r - mid;
+
+    int L[n1], R[n2]; // Temporary arrays to hold the two halves
+
+    // Copy data to temporary arrays L[] and R[]
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    // Merge the temporary arrays back into arr[l..r]
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy the remaining elements of L[], if any
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    // Copy the remaining elements of R[], if any
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void mergeSort(int arr[], int l, int r) {
+    if (l < r) {
+        int mid = l + (r - l) / 2; // Calculate the midpoint
+
+        // Sort first and second halves
+        mergeSort(arr, l, mid);
+        mergeSort(arr, mid + 1, r);
+
+        // Merge the sorted halves
+        merge(arr, l, mid, r);
+    }
+}
+
+
+  //this part will implement binaly search for value
+  //si is starting index and li is last index
+
+int
+binarySearch (int arr[], int size, int value,  int si, int li)
+{
+  
+
+
+  
+  int mid = (si + li)  / 2;	// condsidering the starting index to be 0 and end index to be size -1 to find mid.
+
+ 
+  
+  
+  
+	
+	 //base case
+  if(si > li){
+      return -1; 
+  }
+  
+  if (arr[mid] == value)
+	{
+	  return mid;
+	}
+
+int index = -1;
+  if (value >= arr[mid])
+	{
+	 index=  binarySearch (arr, size, value, mid + 1, li);
+	}
+  else
+	{
+	index =  binarySearch (arr, size, value, si, mid - 1);
+	}
+	return index;
+
+}
+
+
+
+
+
+
+
+int
+main ()
+{
+  std::cout << "Hello World this is Binary Search code" << std::endl;
+
+  int size;
+  std::cout << "Enter the size of the array?" << std::endl;
+  std::cin >> size;
+  int *arr = new int[size];
+  input (arr, size);
+ 
+  mergeSort(arr, 0, size-1);
+  
+  
+  //printing sorted array
+  for(int i =0; i < size; i++){
+      std::cout << arr[i] << " ";
+  }
+  std::cout << "\n";
+  
+  
+   int n;
+  std::cout << "Enter the value to be searched?" << std::endl;
+  std::cin >> n;
+  
+  
+  //implementing binary search
+  int index = binarySearch (arr, size, n, 0, size - 1);
+  if (index != -1)
+	{
+	  std::cout << "The Searched Position is " << index << " index in the array";
+	}
+  else
+	{
+	  std::cout << "The element does not exist.";
+	}
+
+
+
+  return 0;
+}
