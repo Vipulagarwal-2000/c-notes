@@ -22,7 +22,8 @@ void sorting(int arr[],int si,int li){
     for(int i =li; i > si; i--){
         if(arr[i] < arr[i-1]){
             swap(arr[i], arr[i-1]);
-        }
+        }else {
+break;
     }
 }
 
