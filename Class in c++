@@ -1,0 +1,98 @@
+/* 
+
+to do 
+add subtraction
+add division
+
+
+
+*/
+
+#include <iostream>
+
+using namespace std;
+class Fraction {
+    
+    private:
+    //attributes should always be private
+    int numerator;
+    int denominator;
+    
+    
+    public :
+    
+    //constructor
+    Fraction(int numerator, int denominator){
+        cout << "constructor 1 called" << endl;
+        this -> numerator = numerator;
+        this -> denominator = denominator;
+    }
+    
+    void print(){
+       cout << this -> numerator << " / " <<this -> denominator << endl;
+    }
+    
+    void simplify(){
+        int gcd = 1;
+        //gcd greatest common divisior
+        int j = min(this-> numerator, this -> denominator);
+        for(int i =1; i <= j; i++){
+            if(numerator %i == 0 && denominator % i ==0){
+                gcd = i;
+            }
+        }
+        this -> numerator = this-> numerator/gcd;
+        denominator = denominator/gcd;
+    }
+    
+    
+    //f1.fraction(f2)
+    // fraction const &f2
+    void add(Fraction const &f2){
+        int lcm = denominator * f2.denominator;
+        
+        int x = lcm / denominator;
+        int y = lcm / f2.denominator;
+        
+        int num = x * numerator + (y* f2.numerator);
+        
+        numerator = num;
+        denominator = lcm;
+       //this -> simplify(); 
+       simplify();
+    }
+    
+    void multiply(Fraction f2) {
+        numerator = numerator * f2.numerator;
+        denominator = denominator * f2.denominator;
+        
+        simplify();
+    }
+    
+};
+
+int main()
+{
+    std::cout<<"Hello World"<<endl;
+    Fraction f1(10, 2);
+    Fraction f2(15, 4);
+    
+    f1.add(f2);
+    //fraction f2 = main.f2
+   //so fraction f2(f2)  , a new copy is created
+   //f1.add(&f2) here reference to f2 is passed but it will need reference in class function too.
+   
+   //f2 can be changed through it.
+   //so solution is int const &k 
+    
+    
+    f1.print();
+    f2.print();
+    
+    cout << "after multiply" << endl;
+    f1.multiply(f2);
+    f1.print();
+    f2.print();
+
+    return 0;
+}
